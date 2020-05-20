@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "Blackburn Theme Demo"
+title = "Steven DiFalco"
 theme = "blackburn"
 author = "Yoshiharu Yamashita"
 copyright = "&copy; 2016. All rights reserved."
@@ -13,8 +13,8 @@ paginate = 10
 
 [params]
   # Shown in the home page
-  subtitle = "A Hugo Theme"
-  brand = "Blackburn"
+  subtitle = "Landscape Ecologist and Geographer"
+  brand = "Steven DiFalco"
   googleAnalytics = "Your Google Analytics tracking ID"
   disqus = "Your Disqus shortname"
   # CSS name for highlight.js
@@ -50,9 +50,9 @@ paginate = 10
 [social]
   # Link your social networking accouns to the side menu
   # by entering your username or ID.
-  twitter = "*"
+  twitter = "stevendifalco"
   facebook = "*"
   instagram = "*"
-  github = "yoshiharuyamashita"
+  github = "stevendifalco"
   stackoverflow = "*"
-  linkedin = "*"
+  linkedin = "stevendifalco"
