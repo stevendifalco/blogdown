@@ -6,7 +6,7 @@ title: Contact
 ---
 <center>
 
-<form method="POST" name="Contact">
+<form method="POST" name="Contact" netlify>
   <label for="name">Name</label>
   <br>
   <input type="text" id="name" name="name" placeholder="name">
