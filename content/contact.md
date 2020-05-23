@@ -1,46 +1,30 @@
 ---
-date: "2014-04-09"
+date: "2020-05-22"
 description: How to contact me
 sidemenu: "true"
 title: Contact
 ---
 
-<form class="pure-form pure-form-stacked">
-  <fieldset>
-    <div class="pure-g">
-      <div class="pure-u-1 pure-u-md-1-3">
-        <label for="first-name">First Name</label>
-        <input id="first-name" class="pure-u-23-24" type="text">
-      </div>
-
-      <div class="pure-u-1 pure-u-md-1-3">
-        <label for="last-name">Last Name</label>
-        <input id="last-name" class="pure-u-23-24" type="text">
-      </div>
-
-      <div class="pure-u-1 pure-u-md-1-3">
-        <label for="email">E-Mail</label>
-        <input id="email" class="pure-u-23-24" type="email" required>
-      </div>
-
-      <div class="pure-u-1 pure-u-md-1-3">
-        <label for="city">City</label>
-        <input id="city" class="pure-u-23-24" type="text">
-      </div>
-
-      <div class="pure-u-1 pure-u-md-1-3">
-        <label for="state">State</label>
-        <select id="state" class="pure-input-1-2">
-          <option>AL</option>
-          <option>CA</option>
-          <option>IL</option>
-        </select>
-      </div>
-    </div>
-    <fieldset class="pure-group">
-      <input type="text" class="pure-input-1-2" placeholder="A title">
-      <textarea class="pure-input-1-2" placeholder="Your message"></textarea>
-    </fieldset>
-    <button type="submit" class="pure-button pure-button-primary">Send</button>
-  </fieldset>
+<form name="contact" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>   
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
 </form>
+
+<a href="https://twitter.com/intent/tweet?screen_name=stevendifalco&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @stevendifalco</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
