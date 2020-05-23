@@ -6,7 +6,7 @@ title: Contact
 ---
 <center>
 
-<form method="POST" name="Contact" netlify>
+<form method="POST" name="Contact" data-netlify-recaptcha="true" netlify>
   <label for="name">Name</label>
   <br>
   <input type="text" id="name" name="name" placeholder="name">
@@ -20,6 +20,7 @@ title: Contact
   <br>
   <textarea id="message" name="message" placeholder="Write here!" style="height:200px"></textarea>
   <br>
+  <div data-netlify-recaptcha></div>
   <br>
   <input type="submit" value="Submit" style="">
   
