@@ -4,19 +4,13 @@ description: How to contact me
 sidemenu: "true"
 title: Contact
 ---
-
+<center>
 <form name="contact" method="POST" data-netlify="true">
   <p>
     <label>Your Name: <input type="text" name="name" /></label>   
   </p>
   <p>
     <label>Your Email: <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <label>Your Role: <select name="role[]" multiple>
-      <option value="leader">Leader</option>
-      <option value="follower">Follower</option>
-    </select></label>
   </p>
   <p>
     <label>Message: <textarea name="message"></textarea></label>
@@ -27,4 +21,5 @@ title: Contact
 </form>
 
 <a href="https://twitter.com/intent/tweet?screen_name=stevendifalco&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @stevendifalco</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
 
