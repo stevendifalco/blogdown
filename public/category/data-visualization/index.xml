@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data visualization | Steven DiFalco</title>
+    <link>https://stevendifalco.com/category/data-visualization/</link>
+      <atom:link href="https://stevendifalco.com/category/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    <description>data visualization</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Tue, 09 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
+      <title>data visualization</title>
+      <link>https://stevendifalco.com/category/data-visualization/</link>
+    </image>
+    
+    <item>
+      <title>Walkability</title>
+      <link>https://stevendifalco.com/post/2020-06-09/</link>
+      <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/post/2020-06-09/</guid>
+      <description>
+
+
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Modes of travling biking and walking ACS data
+commute_mode &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-11-05/commute.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   city = col_character(),
+##   state = col_character(),
+##   city_size = col_character(),
+##   mode = col_character(),
+##   n = col_double(),
+##   percent = col_double(),
+##   moe = col_double(),
+##   state_abb = col_character(),
+##   state_region = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;commute_mode$state &amp;lt;- recode(commute_mode$state, 
+                       &amp;quot;Ca&amp;quot;= &amp;quot;California&amp;quot;,
+                       &amp;quot;Massachusett&amp;quot; = &amp;quot;Massachusetts&amp;quot;)
+
+
+#summarise data each state for percent biking and walking
+commute_summary &amp;lt;- commute_mode %&amp;gt;%
+  mutate(state = tolower(state)) %&amp;gt;%
+  group_by(state, mode) %&amp;gt;%
+  summarise(Percent = mean(percent))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` regrouping output by &amp;#39;state&amp;#39; (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#retrieve state geo data
+states_map &amp;lt;- map_data(&amp;quot;state&amp;quot;)
+
+#filter by Northeastern States
+NE_states &amp;lt;- subset(states_map, region %in% c(&amp;quot;connecticut&amp;quot;, &amp;quot;massachusetts&amp;quot;,&amp;quot;maine&amp;quot;, &amp;quot;new hampshire&amp;quot;, 
+                                          &amp;quot;new york&amp;quot;, &amp;quot;rhode island&amp;quot;, &amp;quot;vermont&amp;quot;))
+#plot by new england states
+commute_summary %&amp;gt;%
+  ggplot(aes(map_id = state)) +
+  geom_map(aes(fill=Percent), map = NE_states)+ #sets up map
+  facet_wrap(vars(mode)) + #displays both bike and walk on same figure
+  expand_limits(x= NE_states$long, y=NE_states$lat)+ #sets limits based on lat/long of states file
+  coord_map(&amp;quot;polyconic&amp;quot;) +
+  scale_fill_viridis(option = &amp;quot;D&amp;quot;) +
+  theme_void()+ #gets rid of xy grid
+  labs(fill = &amp;quot;Percent of commuters&amp;quot;, title= &amp;quot;The Northeast Loves Walking&amp;quot;)+
+  theme(legend.position=&amp;quot;bottom&amp;quot;, plot.title = element_text(hjust =0.5), 
+        strip.text.x = element_text(size = 12))#changes text of mode&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-09/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;commute_summary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 102 x 3
+## # Groups:   state [51]
+##    state      mode  Percent
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 alabama    Bike    0.235
+##  2 alabama    Walk    1.33 
+##  3 alaska     Bike    1.43 
+##  4 alaska     Walk    5.03 
+##  5 arizona    Bike    0.724
+##  6 arizona    Walk    2.10 
+##  7 arkansas   Bike    0.155
+##  8 arkansas   Walk    2.05 
+##  9 california Bike    0.983
+## 10 california Walk    2.36 
+## # … with 92 more rows&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

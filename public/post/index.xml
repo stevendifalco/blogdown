@@ -5,12 +5,83 @@
     <link>https://stevendifalco.com/post/</link>
       <atom:link href="https://stevendifalco.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Thu, 04 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Tue, 09 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://stevendifalco.com/post/</link>
     </image>
+    
+    <item>
+      <title>Walkability</title>
+      <link>https://stevendifalco.com/post/2020-06-09/</link>
+      <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/post/2020-06-09/</guid>
+      <description>
+
+
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Modes of travling biking and walking ACS data
+commute_mode &amp;lt;- readr::read_csv(&amp;quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-11-05/commute.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   city = col_character(),
+##   state = col_character(),
+##   city_size = col_character(),
+##   mode = col_character(),
+##   n = col_double(),
+##   percent = col_double(),
+##   moe = col_double(),
+##   state_abb = col_character(),
+##   state_region = col_character()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;commute_mode$state &amp;lt;- recode(commute_mode$state, 
+                       &amp;quot;Ca&amp;quot;= &amp;quot;California&amp;quot;,
+                       &amp;quot;Massachusett&amp;quot; = &amp;quot;Massachusetts&amp;quot;)
+
+
+#summarise data each state for percent biking and walking
+commute_summary &amp;lt;- commute_mode %&amp;gt;%
+  mutate(state = tolower(state)) %&amp;gt;%
+  group_by(state, mode) %&amp;gt;%
+  summarise(Percent = mean(percent))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` regrouping output by &amp;#39;state&amp;#39; (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#retrieve state geo data
+states_map &amp;lt;- map_data(&amp;quot;state&amp;quot;)
+
+#filter by Northeastern States
+NE_states &amp;lt;- subset(states_map, region %in% c(&amp;quot;connecticut&amp;quot;, &amp;quot;massachusetts&amp;quot;,&amp;quot;maine&amp;quot;, &amp;quot;new hampshire&amp;quot;, 
+                                          &amp;quot;new york&amp;quot;, &amp;quot;rhode island&amp;quot;, &amp;quot;vermont&amp;quot;))
+#plot by new england states
+commute_summary %&amp;gt;%
+  ggplot(aes(map_id = state)) +
+  geom_map(aes(fill=Percent), map = NE_states)+ #sets up map
+  facet_wrap(vars(mode)) + #displays both bike and walk on same figure
+  expand_limits(x= NE_states$long, y=NE_states$lat)+ #sets limits based on lat/long of states file
+  coord_map(&amp;quot;polyconic&amp;quot;) +
+  scale_fill_viridis(option = &amp;quot;D&amp;quot;) +
+  theme_void()+ #gets rid of xy grid
+  labs(fill = &amp;quot;Percent of commuters&amp;quot;, title= &amp;quot;The Northeast Loves Walking&amp;quot;)+
+  theme(legend.position=&amp;quot;bottom&amp;quot;, plot.title = element_text(hjust =0.5), 
+        strip.text.x = element_text(size = 12))#changes text of mode&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-09/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;commute_summary&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 102 x 3
+## # Groups:   state [51]
+##    state      mode  Percent
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 alabama    Bike    0.235
+##  2 alabama    Walk    1.33 
+##  3 alaska     Bike    1.43 
+##  4 alaska     Walk    5.03 
+##  5 arizona    Bike    0.724
+##  6 arizona    Walk    2.10 
+##  7 arkansas   Bike    0.155
+##  8 arkansas   Walk    2.05 
+##  9 california Bike    0.983
+## 10 california Walk    2.36 
+## # … with 92 more rows&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Volcanos Data TidyTuesday</title>
@@ -72,6 +143,314 @@ animate(animate, renderer = gifski_renderer(&amp;quot;volcanobyyear.gif&amp;quot
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-04/volcanobyyear.gif&#34; alt=&#34;Volcano eruption by Year gif&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Read Data with Multiple Header Rows into R</title>
+      <link>https://stevendifalco.com/post/untitled/</link>
+      <pubDate>Sun, 08 Jul 2018 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/post/untitled/</guid>
+      <description>
+
+
+&lt;p&gt;A shorter version of this blog post now appears as an &lt;a href=&#34;https://readxl.tidyverse.org/articles/articles/multiple-header-rows.html&#34;&gt;article vignette&lt;/a&gt; for the &lt;code&gt;readxl&lt;/code&gt; package, thank you to &lt;a href=&#34;https://jennybryan.org/&#34;&gt;Jenny Bryan&lt;/a&gt; for the &lt;a href=&#34;https://twitter.com/JennyBryan/status/1016442080636235776&#34;&gt;invitation&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;A problem I run up against a lot when working with other people’s data is having multiple header rows in the source data file. I like to use &lt;code&gt;readr&lt;/code&gt; functions to read in rectangular data like &lt;code&gt;.csv&lt;/code&gt; and &lt;code&gt;.tsv&lt;/code&gt; files, but if you skip rows at import using the &lt;code&gt;skip&lt;/code&gt; argument, you lose the header row as well, which usually has column names. The problem I often have is that the header row has column names that I want to keep, but I’d like to skip the second row (or more), which has some junk in it. Usually this row is some kind of data dictionary inserted between the row of column names and the actual data.&lt;/p&gt;
+&lt;p&gt;In this post, I’ll walk through a solution to this problem, using the &lt;code&gt;readr&lt;/code&gt; package. You can also watch along in the video.&lt;/p&gt;
+&lt;p&gt;Warning!: I made a mistake when I said &lt;code&gt;readr&lt;/code&gt; uses the first 100 rows of your data to predict column types- it uses the first 1000 rows.&lt;/p&gt;
+&lt;div id=&#34;being-sticker-rich&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Being sticker rich&lt;/h1&gt;
+&lt;p&gt;This dataset is from an article published in PLOS ONE called &lt;a href=&#34;http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0138928&#34;&gt;“Being Sticker Rich: Numerical Context Influences Children’s Sharing Behavior”&lt;/a&gt;. In this study, children (ages 3–11) received a small (12, “sticker poor”) or large (30, “sticker rich”) number of stickers, and were then given the opportunity to share their windfall with either one or multiple anonymous recipients. This type of experimental design is a version of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Dictator_game&#34;&gt;Dictator Game&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;stickers-plos-one.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The main research questions the authors explored were: do the number of available resources and/or the number of potential recipients alter the likelihood of a child donating and/or the amount they donate? But, in order to answer this question, we have to be able to read in the data! Luckily, these lovely developmental psychologists opted to share their data on the &lt;a href=&#34;https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/LHAQ5W&#34;&gt;Harvard Dataverse&lt;/a&gt; as a tab-delimited file.&lt;/p&gt;
+&lt;p&gt;If you download the file, you can open it up in a plain text editor.
+&lt;img src=&#34;stickers-txt.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;You can also open it with Microsoft Excel.
+&lt;img src=&#34;stickers-table.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;read-in-the-file&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Read in the file&lt;/h1&gt;
+&lt;p&gt;Let’s start by creating a variable called &lt;code&gt;link&lt;/code&gt; to store the link to the data file.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# create variable to store url
+link &amp;lt;- &amp;quot;https://dataverse.harvard.edu/api/access/datafile/2712105&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The file has a &lt;code&gt;.tab&lt;/code&gt; extension, so we know it is tab-delimited. This means that the right &lt;code&gt;readr&lt;/code&gt; function for reading this file is &lt;code&gt;read_tsv&lt;/code&gt;. Since we stored our link already as a character string, that is the only argument to the &lt;code&gt;read_tsv&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;quot;readr&amp;quot;)
+library(readr) # load the readr package
+stickers &amp;lt;- read_tsv(link) 
+# spec()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, we know the second row of data is wonky, but how can we see that in R? There are a number of ways we can go spelunking around into our data file. The easiest to print it. Since we used &lt;code&gt;readr&lt;/code&gt;, we have a tibble, which nicely prints to screen.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stickers&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# # A tibble: 402 x 18
+#    SubjectNumber Condition NumberStickers NumberEnvelopes Gender Agemonths
+#    &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+#  1 [Included Sa… 1=12:1; … 1=12; 2=30     1=1 recipient;… 1=fem…        NA
+#  2 1             1         1              1               1             36
+#  3 2             1         1              1               2             36
+#  4 3             1         1              1               2             36
+#  5 4             1         1              1               1             36
+#  6 5             1         1              1               2             36
+#  7 6             1         1              1               2             36
+#  8 7             2         1              2               1             36
+#  9 8             2         1              2               2             36
+# 10 9             3         2              1               2             36
+# # … with 392 more rows, and 12 more variables: Ageyears &amp;lt;dbl&amp;gt;, Agegroups &amp;lt;chr&amp;gt;,
+# #   `Subject&amp;#39;sEnvelope` &amp;lt;chr&amp;gt;, LeftEnvelope &amp;lt;chr&amp;gt;, RightEnvelope &amp;lt;chr&amp;gt;,
+# #   `absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)` &amp;lt;chr&amp;gt;,
+# #   `PercentGiven(Outof100percent)` &amp;lt;chr&amp;gt;, Giveornot &amp;lt;chr&amp;gt;,
+# #   LargerEnvelopeabs &amp;lt;chr&amp;gt;, LargeEnvelopepercent &amp;lt;chr&amp;gt;,
+# #   SmallerEnvelopeabs &amp;lt;chr&amp;gt;, SmallEnvelopepercent &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unfortunately, &lt;code&gt;dplyr::glimpse&lt;/code&gt; can’t help us much, because we have one variable name that is ridiculously long (&lt;code&gt;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&lt;/code&gt;). We’ll fix that with &lt;code&gt;dplyr::rename&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+glimpse(stickers)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# Rows: 402
+# Columns: 18
+# $ SubjectNumber                                                                  &amp;lt;chr&amp;gt; …
+# $ Condition                                                                      &amp;lt;chr&amp;gt; …
+# $ NumberStickers                                                                 &amp;lt;chr&amp;gt; …
+# $ NumberEnvelopes                                                                &amp;lt;chr&amp;gt; …
+# $ Gender                                                                         &amp;lt;chr&amp;gt; …
+# $ Agemonths                                                                      &amp;lt;dbl&amp;gt; …
+# $ Ageyears                                                                       &amp;lt;dbl&amp;gt; …
+# $ Agegroups                                                                      &amp;lt;chr&amp;gt; …
+# $ `Subject&amp;#39;sEnvelope`                                                            &amp;lt;chr&amp;gt; …
+# $ LeftEnvelope                                                                   &amp;lt;chr&amp;gt; …
+# $ RightEnvelope                                                                  &amp;lt;chr&amp;gt; …
+# $ `absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)` &amp;lt;chr&amp;gt; …
+# $ `PercentGiven(Outof100percent)`                                                &amp;lt;chr&amp;gt; …
+# $ Giveornot                                                                      &amp;lt;chr&amp;gt; …
+# $ LargerEnvelopeabs                                                              &amp;lt;chr&amp;gt; …
+# $ LargeEnvelopepercent                                                           &amp;lt;chr&amp;gt; …
+# $ SmallerEnvelopeabs                                                             &amp;lt;chr&amp;gt; …
+# $ SmallEnvelopepercent                                                           &amp;lt;chr&amp;gt; …&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More options:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(stickers)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# # A tibble: 6 x 18
+#   SubjectNumber Condition NumberStickers NumberEnvelopes Gender Agemonths
+#   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+# 1 [Included Sa… 1=12:1; … 1=12; 2=30     1=1 recipient;… 1=fem…        NA
+# 2 1             1         1              1               1             36
+# 3 2             1         1              1               2             36
+# 4 3             1         1              1               2             36
+# 5 4             1         1              1               1             36
+# 6 5             1         1              1               2             36
+# # … with 12 more variables: Ageyears &amp;lt;dbl&amp;gt;, Agegroups &amp;lt;chr&amp;gt;,
+# #   `Subject&amp;#39;sEnvelope` &amp;lt;chr&amp;gt;, LeftEnvelope &amp;lt;chr&amp;gt;, RightEnvelope &amp;lt;chr&amp;gt;,
+# #   `absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)` &amp;lt;chr&amp;gt;,
+# #   `PercentGiven(Outof100percent)` &amp;lt;chr&amp;gt;, Giveornot &amp;lt;chr&amp;gt;,
+# #   LargerEnvelopeabs &amp;lt;chr&amp;gt;, LargeEnvelopepercent &amp;lt;chr&amp;gt;,
+# #   SmallerEnvelopeabs &amp;lt;chr&amp;gt;, SmallEnvelopepercent &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tail(stickers)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# # A tibble: 6 x 18
+#   SubjectNumber Condition NumberStickers NumberEnvelopes Gender Agemonths
+#   &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+# 1 396           1         1              1               2            136
+# 2 397           4         2              2               1            136
+# 3 398           1         1              1               1            137
+# 4 399           1         1              1               2            137
+# 5 400           4         2              2               2            139
+# 6 401           3         2              1               1            143
+# # … with 12 more variables: Ageyears &amp;lt;dbl&amp;gt;, Agegroups &amp;lt;chr&amp;gt;,
+# #   `Subject&amp;#39;sEnvelope` &amp;lt;chr&amp;gt;, LeftEnvelope &amp;lt;chr&amp;gt;, RightEnvelope &amp;lt;chr&amp;gt;,
+# #   `absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)` &amp;lt;chr&amp;gt;,
+# #   `PercentGiven(Outof100percent)` &amp;lt;chr&amp;gt;, Giveornot &amp;lt;chr&amp;gt;,
+# #   LargerEnvelopeabs &amp;lt;chr&amp;gt;, LargeEnvelopepercent &amp;lt;chr&amp;gt;,
+# #   SmallerEnvelopeabs &amp;lt;chr&amp;gt;, SmallEnvelopepercent &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;names(stickers)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#  [1] &amp;quot;SubjectNumber&amp;quot;                                                               
+#  [2] &amp;quot;Condition&amp;quot;                                                                   
+#  [3] &amp;quot;NumberStickers&amp;quot;                                                              
+#  [4] &amp;quot;NumberEnvelopes&amp;quot;                                                             
+#  [5] &amp;quot;Gender&amp;quot;                                                                      
+#  [6] &amp;quot;Agemonths&amp;quot;                                                                   
+#  [7] &amp;quot;Ageyears&amp;quot;                                                                    
+#  [8] &amp;quot;Agegroups&amp;quot;                                                                   
+#  [9] &amp;quot;Subject&amp;#39;sEnvelope&amp;quot;                                                           
+# [10] &amp;quot;LeftEnvelope&amp;quot;                                                                
+# [11] &amp;quot;RightEnvelope&amp;quot;                                                               
+# [12] &amp;quot;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&amp;quot;
+# [13] &amp;quot;PercentGiven(Outof100percent)&amp;quot;                                               
+# [14] &amp;quot;Giveornot&amp;quot;                                                                   
+# [15] &amp;quot;LargerEnvelopeabs&amp;quot;                                                           
+# [16] &amp;quot;LargeEnvelopepercent&amp;quot;                                                        
+# [17] &amp;quot;SmallerEnvelopeabs&amp;quot;                                                          
+# [18] &amp;quot;SmallEnvelopepercent&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# View()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we are ready to diagnose the problem!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;: the first row is not really data. It is metadata about the variables, and it is screwing up &lt;strong&gt;readr&lt;/strong&gt;’s ability to predict our column types.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;: we’ll use &lt;strong&gt;readr&lt;/strong&gt; and the &lt;code&gt;read_tsv()&lt;/code&gt; function to read in the data twice. In Step 1, we’ll create a character vector of the column names only. In Step 2, we’ll read in the actual data and skip the multiple header rows at the top. When we do this, we lose the column names, so we use the character vector of column names we created in Step 1 instead.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;read-in-the-file-again&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Read in the file (again)&lt;/h1&gt;
+&lt;div id=&#34;step-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 1&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: we want to read in the first row only and save it as a character vector called &lt;code&gt;sticker_names&lt;/code&gt;. This row contains the correct column names that we’ll need in Step 2.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sticker_names &amp;lt;- link %&amp;gt;% 
+  read_tsv(n_max = 0) %&amp;gt;% # default: col_names = TRUE
+  rename(stickersgiven = &amp;#39;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&amp;#39;) %&amp;gt;% 
+  names()
+sticker_names&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#  [1] &amp;quot;SubjectNumber&amp;quot;                 &amp;quot;Condition&amp;quot;                    
+#  [3] &amp;quot;NumberStickers&amp;quot;                &amp;quot;NumberEnvelopes&amp;quot;              
+#  [5] &amp;quot;Gender&amp;quot;                        &amp;quot;Agemonths&amp;quot;                    
+#  [7] &amp;quot;Ageyears&amp;quot;                      &amp;quot;Agegroups&amp;quot;                    
+#  [9] &amp;quot;Subject&amp;#39;sEnvelope&amp;quot;             &amp;quot;LeftEnvelope&amp;quot;                 
+# [11] &amp;quot;RightEnvelope&amp;quot;                 &amp;quot;stickersgiven&amp;quot;                
+# [13] &amp;quot;PercentGiven(Outof100percent)&amp;quot; &amp;quot;Giveornot&amp;quot;                    
+# [15] &amp;quot;LargerEnvelopeabs&amp;quot;             &amp;quot;LargeEnvelopepercent&amp;quot;         
+# [17] &amp;quot;SmallerEnvelopeabs&amp;quot;            &amp;quot;SmallEnvelopepercent&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(sticker_names)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#  chr [1:18] &amp;quot;SubjectNumber&amp;quot; &amp;quot;Condition&amp;quot; &amp;quot;NumberStickers&amp;quot; &amp;quot;NumberEnvelopes&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 2&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: we want to read in all the rows &lt;em&gt;except&lt;/em&gt; for the first two rows, which contained the variable names and variable descriptions. We want to save this as &lt;code&gt;stickers&lt;/code&gt;, and set the column names to the &lt;code&gt;sticker_names&lt;/code&gt; object we created in Step 1.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stickers &amp;lt;- link %&amp;gt;% 
+  read_tsv(skip = 2, col_names = sticker_names)
+glimpse(stickers)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# Rows: 401
+# Columns: 18
+# $ SubjectNumber                   &amp;lt;dbl&amp;gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12…
+# $ Condition                       &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3…
+# $ NumberStickers                  &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2…
+# $ NumberEnvelopes                 &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1…
+# $ Gender                          &amp;lt;dbl&amp;gt; 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 1…
+# $ Agemonths                       &amp;lt;dbl&amp;gt; 36, 36, 36, 36, 36, 36, 36, 36, 36, 3…
+# $ Ageyears                        &amp;lt;dbl&amp;gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+# $ Agegroups                       &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+# $ `Subject&amp;#39;sEnvelope`             &amp;lt;dbl&amp;gt; 7, 12, 4, 7, 12, 8, 8, 11, 26, 30, 12…
+# $ LeftEnvelope                    &amp;lt;dbl&amp;gt; 5, 0, 8, 5, 0, 4, 2, 1, 4, 0, 18, 18,…
+# $ RightEnvelope                   &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 2, 0, NA, NA,…
+# $ stickersgiven                   &amp;lt;dbl&amp;gt; 5, 0, 8, 5, 0, 4, 4, 1, 4, 0, 18, 18,…
+# $ `PercentGiven(Outof100percent)` &amp;lt;dbl&amp;gt; 0.42, 0.00, 0.67, 0.42, 0.00, 0.33, 0…
+# $ Giveornot                       &amp;lt;dbl&amp;gt; 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0…
+# $ LargerEnvelopeabs               &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 2, 1, NA, NA,…
+# $ LargeEnvelopepercent            &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 0.5000000, 1.…
+# $ SmallerEnvelopeabs              &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 2, 0, NA, NA,…
+# $ SmallEnvelopepercent            &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 0.5000000, 0.…&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fin&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Fin!&lt;/h1&gt;
+&lt;p&gt;All together now: the final solution!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load packages
+library(readr)
+library(dplyr)
+
+# create variable to store url
+link &amp;lt;- &amp;quot;https://dataverse.harvard.edu/api/access/datafile/2712105&amp;quot;
+
+# read in column names only
+sticker_names &amp;lt;- link %&amp;gt;% 
+  read_tsv(n_max = 0) %&amp;gt;% # default: col_names = TRUE
+  rename(stickersgiven = &amp;#39;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&amp;#39;) %&amp;gt;% 
+  names()
+
+# read in data, set column names
+stickers &amp;lt;- link %&amp;gt;% 
+  read_tsv(skip = 2, col_names = sticker_names)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;addendum&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Addendum&lt;/h1&gt;
+&lt;p&gt;For good measure, I would add a final step to everything above and use &lt;code&gt;janitor::clean_names()&lt;/code&gt; to put all the variable names into snake case. So my final final solution is here:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load packages
+library(readr)
+library(dplyr)
+library(janitor)
+
+# create variable to store url
+link &amp;lt;- &amp;quot;https://dataverse.harvard.edu/api/access/datafile/2712105&amp;quot;
+
+# read in column names only
+sticker_names &amp;lt;- link %&amp;gt;% 
+  read_tsv(n_max = 0) %&amp;gt;% # default: col_names = TRUE
+  rename(stickersgiven = &amp;#39;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&amp;#39;) %&amp;gt;% 
+  names()
+
+# read in data, set column names
+stickers &amp;lt;- link %&amp;gt;% 
+  read_tsv(skip = 2, col_names = sticker_names) %&amp;gt;% 
+  clean_names()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stickers&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# # A tibble: 401 x 18
+#    subject_number condition number_stickers number_envelopes gender agemonths
+#             &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;           &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+#  1              1         1               1                1      1        36
+#  2              2         1               1                1      2        36
+#  3              3         1               1                1      2        36
+#  4              4         1               1                1      1        36
+#  5              5         1               1                1      2        36
+#  6              6         1               1                1      2        36
+#  7              7         2               1                2      1        36
+#  8              8         2               1                2      2        36
+#  9              9         3               2                1      2        36
+# 10             10         3               2                1      2        36
+# # … with 391 more rows, and 12 more variables: ageyears &amp;lt;dbl&amp;gt;, agegroups &amp;lt;dbl&amp;gt;,
+# #   subjects_envelope &amp;lt;dbl&amp;gt;, left_envelope &amp;lt;dbl&amp;gt;, right_envelope &amp;lt;dbl&amp;gt;,
+# #   stickersgiven &amp;lt;dbl&amp;gt;, percent_given_outof100percent &amp;lt;dbl&amp;gt;, giveornot &amp;lt;dbl&amp;gt;,
+# #   larger_envelopeabs &amp;lt;dbl&amp;gt;, large_envelopepercent &amp;lt;dbl&amp;gt;,
+# #   smaller_envelopeabs &amp;lt;dbl&amp;gt;, small_envelopepercent &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(stickers)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# Rows: 401
+# Columns: 18
+# $ subject_number                &amp;lt;dbl&amp;gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+# $ condition                     &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, …
+# $ number_stickers               &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, …
+# $ number_envelopes              &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, …
+# $ gender                        &amp;lt;dbl&amp;gt; 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 1, …
+# $ agemonths                     &amp;lt;dbl&amp;gt; 36, 36, 36, 36, 36, 36, 36, 36, 36, 36,…
+# $ ageyears                      &amp;lt;dbl&amp;gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, …
+# $ agegroups                     &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+# $ subjects_envelope             &amp;lt;dbl&amp;gt; 7, 12, 4, 7, 12, 8, 8, 11, 26, 30, 12, …
+# $ left_envelope                 &amp;lt;dbl&amp;gt; 5, 0, 8, 5, 0, 4, 2, 1, 4, 0, 18, 18, 0…
+# $ right_envelope                &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 2, 0, NA, NA, N…
+# $ stickersgiven                 &amp;lt;dbl&amp;gt; 5, 0, 8, 5, 0, 4, 4, 1, 4, 0, 18, 18, 0…
+# $ percent_given_outof100percent &amp;lt;dbl&amp;gt; 0.42, 0.00, 0.67, 0.42, 0.00, 0.33, 0.3…
+# $ giveornot                     &amp;lt;dbl&amp;gt; 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, …
+# $ larger_envelopeabs            &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 2, 1, NA, NA, N…
+# $ large_envelopepercent         &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 0.5000000, 1.00…
+# $ smaller_envelopeabs           &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 2, 0, NA, NA, N…
+# $ small_envelopepercent         &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, 0.5000000, 0.00…&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bonus-data-dictionary&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bonus data dictionary&lt;/h1&gt;
+&lt;p&gt;As an extra bonus, when you do have extra header rows, you can create a data dictionary using the &lt;code&gt;gather()&lt;/code&gt; function from the &lt;strong&gt;tidyr&lt;/strong&gt; package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyr)
+stickers_dict &amp;lt;- read_tsv(link, n_max = 1) %&amp;gt;% 
+  rename(stickersgiven = &amp;#39;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&amp;#39;) %&amp;gt;% 
+  clean_names() %&amp;gt;% 
+  gather(variable_name, variable_description)
+stickers_dict&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# # A tibble: 18 x 2
+#    variable_name           variable_description                                 
+#    &amp;lt;chr&amp;gt;                   &amp;lt;chr&amp;gt;                                                
+#  1 subject_number          [Included Sample Only]                               
+#  2 condition               1=12:1; 2=12:2, 3=30:1, 4=30:2                       
+#  3 number_stickers         1=12; 2=30                                           
+#  4 number_envelopes        1=1 recipient; 2=2 recipients                        
+#  5 gender                  1=female; 2=male                                     
+#  6 agemonths               &amp;lt;NA&amp;gt;                                                 
+#  7 ageyears                &amp;lt;NA&amp;gt;                                                 
+#  8 agegroups               1=3-4yrs; 2=5-6yrs; 3=7-8yrs; 4=9-11yrs              
+#  9 subjects_envelope       How many stickers did the child keep for themselves …
+# 10 left_envelope           1 recipient conditions: How many stickers the subjec…
+# 11 right_envelope          1 recipient conditions: N/A; 2 recipient conditions:…
+# 12 stickersgiven           Regardless of condition, the number of stickers the …
+# 13 percent_given_outof100… Regardless of condition, the proportion of stickers …
+# 14 giveornot               1=Donated 1 or more stickers to the recipient(s); 0=…
+# 15 larger_envelopeabs      Raw number of stickers (out of 30: Condition 2 or 4 …
+# 16 large_envelopepercent   Proportion of stickers (out of 100%; Condition 2 or …
+# 17 smaller_envelopeabs     Raw number of stickers (out of 30: Condition 2 or 4 …
+# 18 small_envelopepercent   Proportion of stickers (out of 100%; Condition 2 or …&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;useful-resources&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Useful resources&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Great blog post from &lt;a href=&#34;https://twitter.com/lisadebruine&#34;&gt;Lisa DeBruine&lt;/a&gt; using &lt;code&gt;readxl&lt;/code&gt; to read in data with multiple header rows (including those with merged cells!): &lt;a href=&#34;https://debruine.github.io/multirow_headers.html&#34; class=&#34;uri&#34;&gt;https://debruine.github.io/multirow_headers.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;This GitHub issue with Hadley’s response that solved all my problems:
+&lt;a href=&#34;https://github.com/tidyverse/readr/issues/179&#34; class=&#34;uri&#34;&gt;https://github.com/tidyverse/readr/issues/179&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My original tweet when I discovered this trick!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 </description>
     </item>
     
