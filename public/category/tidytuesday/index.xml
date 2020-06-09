@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TidyTuesday | Steven DiFalco</title>
+    <link>https://stevendifalco.com/category/tidytuesday/</link>
+      <atom:link href="https://stevendifalco.com/category/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
+    <description>TidyTuesday</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Thu, 04 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
+      <title>TidyTuesday</title>
+      <link>https://stevendifalco.com/category/tidytuesday/</link>
+    </image>
+    
+    <item>
+      <title>Volcanos Data TidyTuesday</title>
+      <link>https://stevendifalco.com/post/2020-06-04/volcanos-tidytuesday-data/</link>
+      <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/post/2020-06-04/volcanos-tidytuesday-data/</guid>
+      <description>&lt;p&gt;This is my contribution to 
+&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TidyTuesday&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;in-this-im-attempting-to-use-the-gganimate-package-for-the-first-time-to-create-an-animation-showing-volcanoe-eruptions-over-the-past-century-and-their-location&#34;&gt;In this, I’m attempting to use the gganimate package for the first time to create an animation showing volcanoe eruptions over the past century and their location.&lt;/h3&gt;
+&lt;h3 id=&#34;packages-used-for-this-document&#34;&gt;Packages used for this document:&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    library(readxl)
+    library(tidyverse)
+    library(ggplot2)
+    library(gganimate)
+    library(maps)
+    library(ggthemes)
+    library(DT)
+    library(gifski)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lets take a look at the data first and see what information is here.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    eruptions &amp;lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/eruptions.csv&#39;)
+
+    eruption_list &amp;lt;- eruptions %&amp;gt;% 
+      janitor::clean_names() %&amp;gt;% 
+      select(-contains(&amp;quot;modifier&amp;quot;), -contains(&amp;quot;uncertainty&amp;quot;)) %&amp;gt;% 
+      filter(eruption_category == &amp;quot;Confirmed Eruption&amp;quot;) %&amp;gt;% #only confirmed volcanoes stay in data
+      drop_na(end_year) %&amp;gt;% #drops those without end year
+      filter(end_year &amp;gt; 2010) #filters only volcanoes after 2010
+
+    datatable(eruption_list, rownames = FALSE,
+              options = list(pageLength = 5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, I’ll create an underlying map for plotting the points.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    world &amp;lt;- ggplot() +
+      borders(&amp;quot;world&amp;quot;, colour = &amp;quot;gray85&amp;quot;, fill = &amp;quot;gray80&amp;quot;) +
+      theme_map() 
+
+    map &amp;lt;- world +
+      geom_point(aes(x = longitude, y = latitude, size = vei),
+                 data = eruption_list, 
+                 colour = &#39;purple&#39;, alpha = .5) +
+      scale_size_continuous(range = c(1, 7)) +
+      labs(size = &#39;Volcanic Explosivity Index&#39;)
+
+    map
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-04/unnamed-chunk-3-1.png&#34; alt=&#34;All Volcanoes 2012-2020&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now let’s animate! I did not realize going into this that the points would ‘move’ from year to year instead of appearing for that year then disappear. Something to consider for the next time I use this package.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;
+animate2 &amp;lt;- world + 
+    geom_point(aes(x = longitude, y = latitude, size = vei),
+             data = eruption_list, 
+             colour = &#39;purple&#39;, alpha = .5) +
+  labs(title = &amp;quot;Date: {frame_time}&amp;quot;, size = &amp;quot;Volcanic Index&amp;quot;) +
+  transition_time(end_year) +
+  ease_aes(&amp;quot;linear&amp;quot;)
+
+animate(animate, renderer = gifski_renderer(&amp;quot;volcanobyyear.gif&amp;quot;))
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-04/volcanobyyear.gif&#34; alt=&#34;Volcano eruption by Year gif&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

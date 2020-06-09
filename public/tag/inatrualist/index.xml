@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>inatrualist | Steven DiFalco</title>
+    <link>https://stevendifalco.com/tag/inatrualist/</link>
+      <atom:link href="https://stevendifalco.com/tag/inatrualist/index.xml" rel="self" type="application/rss+xml" />
+    <description>inatrualist</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
+      <title>inatrualist</title>
+      <link>https://stevendifalco.com/tag/inatrualist/</link>
+    </image>
+    
+    <item>
+      <title>Other Projects</title>
+      <link>https://stevendifalco.com/projects/inaturalist/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/projects/inaturalist/</guid>
+      <description>&lt;h2 id=&#34;1-bokeh--python-package&#34;&gt;1) Bokeh- Python package&lt;/h2&gt;
+&lt;h4 id=&#34;using-the-bokeh-package-in-python-to-visualize-local-trails-and-protected-open-space-parcels-these-are-dynamic-maps-which-can-be-zoomed-into-and-scrolled-around-hovering-over-any-given-trail-will-provide-the-property-name-open-space-parcels-will-reveil-parcel-id-when-hovered-over&#34;&gt;Using the Bokeh package in Python to visualize local trails and protected open space parcels. These are dynamic maps which can be zoomed into and scrolled around. Hovering over any given trail will provide the property name. Open space parcels will reveil parcel ID when hovered over.&lt;/h4&gt;
+&lt;p&gt;
+&lt;a href=&#34;BokehMaps_080619.html&#34;&gt;Mansfield Town Trails and Protected Open Space&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-inaturalist-data-analysis-in-r&#34;&gt;2) iNaturalist data analysis in R&lt;/h2&gt;
+&lt;h4 id=&#34;i-am-interested-in-using-inaturalist-data-to-understand-distribution-of-species-and-what-species-are-being-represented-by-citizen-scientists-there-is-an-overwhelming-amount-of-data-collected-everyday-learning-ways-to-utilize-this-data-is-important-ive-been-working-on-different-ways-to-visualize-inat-observations-below-are-some-preliminary-results-i-would-like-to-understand-if-invasive-species-or-native-species-are-posted-more-often-and-where-these-observations-occur-are-there-more-observations-near-homes-or-protected-lands-how-far-off-trail-do-people-go-to-make-observations&#34;&gt;I am interested in using iNaturalist data to understand distribution of species and what species are being represented by citizen scientists. There is an overwhelming amount of data collected everyday. Learning ways to utilize this data is important. I&amp;rsquo;ve been working on different ways to visualize iNat observations. Below are some preliminary results. I would like to understand if invasive species or native species are posted more often and where these observations occur; are there more observations near homes or protected lands? how far off trail do people go to make observations?&lt;/h4&gt;
+&lt;h3 id=&#34;top-30-most-common-plants&#34;&gt;Top 30 most common plants&lt;/h3&gt;
+&lt;h4 id=&#34;top-30-most-common-observations-for-10-years-of-inaturalist-data-separated-by-native-and-invasive-it-appears-that-many-of-top-observed-plants-are-abundant-species-throughout-most-of-connecticut-and-mostly-deer-resistant-species&#34;&gt;Top 30 most common observations for 10 years of iNaturalist data, separated by native and invasive. It appears that many of top observed plants are abundant species throughout most of Connecticut and mostly deer-resistant species.&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;Inat_30.jpeg&#34; alt=&#34;&#34; title=&#34;photo&#34;&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;native-vs-invasive-observations&#34;&gt;Native vs Invasive Observations&lt;/h3&gt;
+&lt;h4 id=&#34;occured-throughout-most-of-the-state-during-this-10-year-period-with-no-apparent-trend-yet-of-invasive-vs-native-plants-of-interest-to-me-is-the-abundance-of-observations-around-specific-areas-such-as-the-uconn-campus-in-the-northeastern-part-of-the-state&#34;&gt;occured throughout most of the state during this 10 year period, with no apparent trend yet of invasive vs native plants. Of interest to me is the abundance of observations around specific areas, such as the UConn campus in the northeastern part of the state.&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;inatCT.jpeg&#34; alt=&#34;&#34; title=&#34;photo&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

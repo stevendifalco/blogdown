@@ -1,80 +1,78 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Steven DiFalco</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Steven DiFalco</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; 2020. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 19 May 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>/post/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/post/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
+    <title>Posts | Steven DiFalco</title>
+    <link>https://stevendifalco.com/post/</link>
+      <atom:link href="https://stevendifalco.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <description>Posts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Thu, 04 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
+      <title>Posts</title>
+      <link>https://stevendifalco.com/post/</link>
+    </image>
     
     <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>/post/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/post/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
-    </item>
-    
-    <item>
-      <title>Test post</title>
-      <link>/post/test-post/</link>
-      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/test-post/</guid>
-      <description> Test Post !  Seeing how this works.  </description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>/post/goisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/post/goisforlovers/</guid>
-      <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>/post/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/post/hugoisforlovers/</guid>
-      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at installing hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+      <title>Volcanos Data TidyTuesday</title>
+      <link>https://stevendifalco.com/post/2020-06-04/volcanos-tidytuesday-data/</link>
+      <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/post/2020-06-04/volcanos-tidytuesday-data/</guid>
+      <description>&lt;p&gt;This is my contribution to 
+&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TidyTuesday&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;in-this-im-attempting-to-use-the-gganimate-package-for-the-first-time-to-create-an-animation-showing-volcanoe-eruptions-over-the-past-century-and-their-location&#34;&gt;In this, I’m attempting to use the gganimate package for the first time to create an animation showing volcanoe eruptions over the past century and their location.&lt;/h3&gt;
+&lt;h3 id=&#34;packages-used-for-this-document&#34;&gt;Packages used for this document:&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    library(readxl)
+    library(tidyverse)
+    library(ggplot2)
+    library(gganimate)
+    library(maps)
+    library(ggthemes)
+    library(DT)
+    library(gifski)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lets take a look at the data first and see what information is here.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    eruptions &amp;lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/eruptions.csv&#39;)
+
+    eruption_list &amp;lt;- eruptions %&amp;gt;% 
+      janitor::clean_names() %&amp;gt;% 
+      select(-contains(&amp;quot;modifier&amp;quot;), -contains(&amp;quot;uncertainty&amp;quot;)) %&amp;gt;% 
+      filter(eruption_category == &amp;quot;Confirmed Eruption&amp;quot;) %&amp;gt;% #only confirmed volcanoes stay in data
+      drop_na(end_year) %&amp;gt;% #drops those without end year
+      filter(end_year &amp;gt; 2010) #filters only volcanoes after 2010
+
+    datatable(eruption_list, rownames = FALSE,
+              options = list(pageLength = 5))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, I’ll create an underlying map for plotting the points.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    world &amp;lt;- ggplot() +
+      borders(&amp;quot;world&amp;quot;, colour = &amp;quot;gray85&amp;quot;, fill = &amp;quot;gray80&amp;quot;) +
+      theme_map() 
+
+    map &amp;lt;- world +
+      geom_point(aes(x = longitude, y = latitude, size = vei),
+                 data = eruption_list, 
+                 colour = &#39;purple&#39;, alpha = .5) +
+      scale_size_continuous(range = c(1, 7)) +
+      labs(size = &#39;Volcanic Explosivity Index&#39;)
+
+    map
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-04/unnamed-chunk-3-1.png&#34; alt=&#34;All Volcanoes 2012-2020&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now let’s animate! I did not realize going into this that the points would ‘move’ from year to year instead of appearing for that year then disappear. Something to consider for the next time I use this package.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;
+animate2 &amp;lt;- world + 
+    geom_point(aes(x = longitude, y = latitude, size = vei),
+             data = eruption_list, 
+             colour = &#39;purple&#39;, alpha = .5) +
+  labs(title = &amp;quot;Date: {frame_time}&amp;quot;, size = &amp;quot;Volcanic Index&amp;quot;) +
+  transition_time(end_year) +
+  ease_aes(&amp;quot;linear&amp;quot;)
+
+animate(animate, renderer = gifski_renderer(&amp;quot;volcanobyyear.gif&amp;quot;))
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://stevendifalco.com/post/2020-06-04/volcanobyyear.gif&#34; alt=&#34;Volcano eruption by Year gif&#34;&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

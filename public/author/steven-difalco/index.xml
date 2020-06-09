@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Steven DiFalco</title>
+    <link>https://stevendifalco.com/author/steven-difalco/</link>
+      <atom:link href="https://stevendifalco.com/author/steven-difalco/index.xml" rel="self" type="application/rss+xml" />
+    <description>Steven DiFalco</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright>
+    <image>
+      <url>https://stevendifalco.com/author/steven-difalco/avatar_hu4de0d68bb1265597c94928558c5ef780_2029649_270x270_fill_q90_lanczos_center.jpg</url>
+      <title>Steven DiFalco</title>
+      <link>https://stevendifalco.com/author/steven-difalco/</link>
+    </image>
+    
+  </channel>
+</rss>

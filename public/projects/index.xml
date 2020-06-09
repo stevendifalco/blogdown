@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | Steven DiFalco</title>
+    <link>https://stevendifalco.com/projects/</link>
+      <atom:link href="https://stevendifalco.com/projects/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
+      <title>Projects</title>
+      <link>https://stevendifalco.com/projects/</link>
+    </image>
+    
+    <item>
+      <title>Other Projects</title>
+      <link>https://stevendifalco.com/projects/inaturalist/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/projects/inaturalist/</guid>
+      <description>&lt;h2 id=&#34;1-bokeh--python-package&#34;&gt;1) Bokeh- Python package&lt;/h2&gt;
+&lt;h4 id=&#34;using-the-bokeh-package-in-python-to-visualize-local-trails-and-protected-open-space-parcels-these-are-dynamic-maps-which-can-be-zoomed-into-and-scrolled-around-hovering-over-any-given-trail-will-provide-the-property-name-open-space-parcels-will-reveil-parcel-id-when-hovered-over&#34;&gt;Using the Bokeh package in Python to visualize local trails and protected open space parcels. These are dynamic maps which can be zoomed into and scrolled around. Hovering over any given trail will provide the property name. Open space parcels will reveil parcel ID when hovered over.&lt;/h4&gt;
+&lt;p&gt;
+&lt;a href=&#34;BokehMaps_080619.html&#34;&gt;Mansfield Town Trails and Protected Open Space&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-inaturalist-data-analysis-in-r&#34;&gt;2) iNaturalist data analysis in R&lt;/h2&gt;
+&lt;h4 id=&#34;i-am-interested-in-using-inaturalist-data-to-understand-distribution-of-species-and-what-species-are-being-represented-by-citizen-scientists-there-is-an-overwhelming-amount-of-data-collected-everyday-learning-ways-to-utilize-this-data-is-important-ive-been-working-on-different-ways-to-visualize-inat-observations-below-are-some-preliminary-results-i-would-like-to-understand-if-invasive-species-or-native-species-are-posted-more-often-and-where-these-observations-occur-are-there-more-observations-near-homes-or-protected-lands-how-far-off-trail-do-people-go-to-make-observations&#34;&gt;I am interested in using iNaturalist data to understand distribution of species and what species are being represented by citizen scientists. There is an overwhelming amount of data collected everyday. Learning ways to utilize this data is important. I&amp;rsquo;ve been working on different ways to visualize iNat observations. Below are some preliminary results. I would like to understand if invasive species or native species are posted more often and where these observations occur; are there more observations near homes or protected lands? how far off trail do people go to make observations?&lt;/h4&gt;
+&lt;h3 id=&#34;top-30-most-common-plants&#34;&gt;Top 30 most common plants&lt;/h3&gt;
+&lt;h4 id=&#34;top-30-most-common-observations-for-10-years-of-inaturalist-data-separated-by-native-and-invasive-it-appears-that-many-of-top-observed-plants-are-abundant-species-throughout-most-of-connecticut-and-mostly-deer-resistant-species&#34;&gt;Top 30 most common observations for 10 years of iNaturalist data, separated by native and invasive. It appears that many of top observed plants are abundant species throughout most of Connecticut and mostly deer-resistant species.&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;Inat_30.jpeg&#34; alt=&#34;&#34; title=&#34;photo&#34;&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;native-vs-invasive-observations&#34;&gt;Native vs Invasive Observations&lt;/h3&gt;
+&lt;h4 id=&#34;occured-throughout-most-of-the-state-during-this-10-year-period-with-no-apparent-trend-yet-of-invasive-vs-native-plants-of-interest-to-me-is-the-abundance-of-observations-around-specific-areas-such-as-the-uconn-campus-in-the-northeastern-part-of-the-state&#34;&gt;occured throughout most of the state during this 10 year period, with no apparent trend yet of invasive vs native plants. Of interest to me is the abundance of observations around specific areas, such as the UConn campus in the northeastern part of the state.&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;inatCT.jpeg&#34; alt=&#34;&#34; title=&#34;photo&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tidy Tuesday</title>
+      <link>https://stevendifalco.com/projects/tidytuesday/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/projects/tidytuesday/</guid>
+      <description>&lt;h1 id=&#34;here-are-my-contributions-to-tidytuesdayhttpsgithubcomrfordatasciencetidytuesday&#34;&gt;Here are my contributions to 
+&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#TidyTuesday&lt;/a&gt;&lt;/h1&gt;
+&lt;h4 id=&#34;2020&#34;&gt;2020&lt;/h4&gt;
+&lt;h5 id=&#34;visualization-of-the-wildfires-in-australias-new-south-wales-province&#34;&gt;Visualization of the wildfires in Australia&amp;rsquo;s New South Wales province.&lt;/h5&gt;
+&lt;p&gt;Week 1 - 
+&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-07&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Australlian Wilfires&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;BushfiresNSW.png&#34; alt=&#34;New South Wales Fires&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2019&#34;&gt;2019&lt;/h4&gt;
+&lt;h5 id=&#34;density-estimation-of-squirrels-in-central-park&#34;&gt;Density estimation of squirrels in Central Park.&lt;/h5&gt;
+&lt;p&gt;Week 44 - 
+&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Squirrel Census&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;SquirrelDensity.png&#34; alt=&#34;Squirrel Density&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;percentage-of-commuters-who-walk-to-work-by-state&#34;&gt;Percentage of commuters who walk to work by state.&lt;/h5&gt;
+&lt;p&gt;Week 45 - 
+&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-11-05&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Modes of Commuting&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;WalkingPercentage.jpeg&#34; alt=&#34;Walking&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mansfield Trail Mapper</title>
+      <link>https://stevendifalco.com/projects/mansfieldmapper/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/projects/mansfieldmapper/</guid>
+      <description>&lt;h3 id=&#34;this-interactive-map-application-allows-the-user-to-select-different-attributes-such-as-trails-to-find-out-more-information-and-directions-to-the-location-this-project-was-done-in-collaboration-with-joshuas-trust-and-the-town-of-mansfield-ct-pulling-together-town-state-and-land-trust-trails-to-one-place-and-provide-useful-information-for-those-who-would-like-to-recreate-in-the-mansfield-ct-created-using-arcgis-online&#34;&gt;This interactive map application allows the user to select different attributes (such as trails) to find out more information and directions to the location. This project was done in collaboration with Joshua&amp;rsquo;s Trust and the town of Mansfield, CT. Pulling together town, state, and land trust trails to one place and provide useful information for those who would like to recreate in the Mansfield, CT. Created using ArcGIS Online.&lt;/h3&gt;
+&lt;div&gt;
+&lt;style&gt;.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}&lt;/style&gt;&lt;div class=&#34;embed-container&#34;&gt;&lt;iframe width=&#34;500&#34; height=&#34;400&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; marginheight=&#34;0&#34; marginwidth=&#34;0&#34; title=&#34;Mansfield_TrailMap_09092019&#34; src=&#34;https://joshuastrust.maps.arcgis.com/apps/View/index.html?appid=624855de80744c0f916567ecc662a7f1&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;br&gt; 
+</description>
+    </item>
+    
+  </channel>
+</rss>

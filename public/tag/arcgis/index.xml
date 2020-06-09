@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArcGIS | Steven DiFalco</title>
+    <link>https://stevendifalco.com/tag/arcgis/</link>
+      <atom:link href="https://stevendifalco.com/tag/arcgis/index.xml" rel="self" type="application/rss+xml" />
+    <description>ArcGIS</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Steven DiFalco</copyright><lastBuildDate>Thu, 28 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://stevendifalco.com/images/icon_hub4e451f8373da2880beada631b18c0fe_51688_512x512_fill_lanczos_center_2.png</url>
+      <title>ArcGIS</title>
+      <link>https://stevendifalco.com/tag/arcgis/</link>
+    </image>
+    
+    <item>
+      <title>Mansfield Trail Mapper</title>
+      <link>https://stevendifalco.com/projects/mansfieldmapper/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://stevendifalco.com/projects/mansfieldmapper/</guid>
+      <description>&lt;h3 id=&#34;this-interactive-map-application-allows-the-user-to-select-different-attributes-such-as-trails-to-find-out-more-information-and-directions-to-the-location-this-project-was-done-in-collaboration-with-joshuas-trust-and-the-town-of-mansfield-ct-pulling-together-town-state-and-land-trust-trails-to-one-place-and-provide-useful-information-for-those-who-would-like-to-recreate-in-the-mansfield-ct-created-using-arcgis-online&#34;&gt;This interactive map application allows the user to select different attributes (such as trails) to find out more information and directions to the location. This project was done in collaboration with Joshua&amp;rsquo;s Trust and the town of Mansfield, CT. Pulling together town, state, and land trust trails to one place and provide useful information for those who would like to recreate in the Mansfield, CT. Created using ArcGIS Online.&lt;/h3&gt;
+&lt;div&gt;
+&lt;style&gt;.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}&lt;/style&gt;&lt;div class=&#34;embed-container&#34;&gt;&lt;iframe width=&#34;500&#34; height=&#34;400&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; marginheight=&#34;0&#34; marginwidth=&#34;0&#34; title=&#34;Mansfield_TrailMap_09092019&#34; src=&#34;https://joshuastrust.maps.arcgis.com/apps/View/index.html?appid=624855de80744c0f916567ecc662a7f1&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;br&gt; 
+</description>
+    </item>
+    
+  </channel>
+</rss>
