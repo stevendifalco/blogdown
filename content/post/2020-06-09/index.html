@@ -391,9 +391,9 @@ commute_mode &lt;- readr::read_csv(&quot;https://raw.githubusercontent.com/rford
 commute_summary &lt;- commute_mode %&gt;%
   mutate(state = tolower(state)) %&gt;%
   group_by(state, mode) %&gt;%
-  summarise(Percent = mean(percent))
-
-#retrieve state geo data
+  summarise(Percent = mean(percent))</code></pre>
+<pre><code>## `summarise()` regrouping output by 'state' (override with `.groups` argument)</code></pre>
+<pre class="r"><code>#retrieve state geo data
 states_map &lt;- map_data(&quot;state&quot;)
 
 #filter by Northeastern States
